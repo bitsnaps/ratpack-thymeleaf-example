@@ -1,5 +1,3 @@
-// import ratpack.guice.Guice
-// import ratpack.server.RatpackServer
 import static ratpack.groovy.Groovy.ratpack
 import ratpack.thymeleaf.ThymeleafModule
 import static ratpack.thymeleaf.Template.thymeleafTemplate
@@ -17,9 +15,9 @@ ratpack {
 
     get {
       render(thymeleafTemplate([
-              "title":"Hello, Ratpack!",
-              "header":"Hello, Ratpack!",
-              "text":"This template got rendered using Thymeleaf"
+              title:"Hello, Ratpack!",
+              header:"Hello, Ratpack!",
+              text:"This template got rendered using Thymeleaf"
               ], "home"))
 
     } // get
