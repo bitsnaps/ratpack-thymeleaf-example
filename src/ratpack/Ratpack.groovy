@@ -17,10 +17,14 @@ ratpack {
       render(thymeleafTemplate([
               title:"Hello, Ratpack!",
               header:"Hello, Ratpack!",
-              text:"This template got rendered using Thymeleaf"
+              text:"This template got rendered using Thymeleaf",
+              users: [[username:'admin'], [username:'demo'], [username:'test']]
               ], "home"))
 
     } // get
+
+    // Serve assets from 'public'
+    files { dir "public" }
 
   } //handlers
 }
