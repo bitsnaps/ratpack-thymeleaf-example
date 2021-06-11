@@ -2,9 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${title}" />
+    <link rel="stylesheet" href="/styles.css"></link>
 </head>
 <body>
+    <div th:replace="header" />
+
+
     <h1 th:text="${header}"></h1>
     <p th:text="${text}" />
+
+    <p th:if="${users.size() > 0}">There are: <span th:text="${users.size()}" /> user(s).</p>
+
+    <ul th:each="user: ${users}">
+      <li th:text="${user.username}"></li>
+    </ul>
+
+
+    <div th:replace="footer" />
+
+    <div th:insert="footer">
+      <p>Copyright &copy; Company</p>
+    </div>
+
 </body>
 </html>
