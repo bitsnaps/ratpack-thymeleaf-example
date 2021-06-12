@@ -19,7 +19,11 @@ ratpack {
               title:"Hello, Ratpack!",
               header:"Hello, Ratpack!",
               text:"This template got rendered using Thymeleaf",
-              users: [[username:'admin'], [username:'demo'], [username:'test']]
+              users: [
+                [username:'admin', email:'admin@exmaple.com', role:'ADMIN'],
+                [username:'demo', email:'demo@exmaple.com', role:'USER'],
+                [username:'test', email:'test@exmaple.com', role:'USER']
+                ]
               ], "home"))
 
     } // get

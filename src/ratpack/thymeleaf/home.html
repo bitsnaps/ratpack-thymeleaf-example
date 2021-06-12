@@ -14,9 +14,23 @@
 
     <p th:if="${users.size() > 0}">There are: <span th:text="${users.size()}" /> user(s).</p>
 
+    <!-- Using if/unless -->
     <ul th:each="user: ${users}">
-      <li th:text="${user.username}"></li>
+      <li>
+        <span th:text="${user.username}"></span>: <span th:text="${user.email}"></span>
+        <a th:if="${user.role}=='ADMIN'" href="#">Delete</a>
+        <a th:unless="${user.role}=='ADMIN'" href="#">View</a>
+
+        <!-- Using switch/case -->
+        <div th:switch="${user.role}">
+          <p th:case="ADMIN">Role: <span>Admin</span></p>
+          <p th:case="USER">Role: <span>User</span></p>
+          <p th:case="*">Role: <span>UNKNOWN</span></p><!-- for default case -->
+        </div>
+
+      </li>
     </ul>
+
 
 
     <div th:replace="footer" />
