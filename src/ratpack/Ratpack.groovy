@@ -4,6 +4,7 @@ import static ratpack.thymeleaf.Template.thymeleafTemplate
 
 ratpack {
   serverConfig {
+    port(3000)
     findBaseDir('thymeleaf')
   }
 
