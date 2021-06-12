@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="_layout">
 <head>
-    <title th:text="${title}" />
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
     <script type="text/javascript" th:src="@{/js/app.js}"></script>
 </head>
 <body>
-    <div th:replace="header" />
 
+  <!-- Anything here won't be rendered -->
+
+  <div layout:fragment="content">
 
     <h1 th:text="${header}"></h1>
+
     <p th:text="${text}" />
 
     <p th:if="${users.size() > 0}">There are: <span th:text="${users.size()}" /> user(s).</p>
@@ -31,13 +34,9 @@
       </li>
     </ul>
 
+  </div> <!-- _layout/fragment -->
 
-
-    <div th:replace="footer" />
-
-    <div th:insert="footer">
-      <p>Copyright &copy; Company</p>
-    </div>
+  <!-- Anything here won't be rendered -->
 
 </body>
 </html>

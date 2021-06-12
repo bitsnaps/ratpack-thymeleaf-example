@@ -1,7 +1,18 @@
+import com.google.inject.AbstractModule
+import com.google.inject.multibindings.Multibinder
+import nz.net.ultraq.thymeleaf.LayoutDialect
+import org.thymeleaf.dialect.IDialect
+
 import static ratpack.groovy.Groovy.ratpack
 import ratpack.thymeleaf.ThymeleafModule
 import static ratpack.thymeleaf.Template.thymeleafTemplate
 
+ class ThymeleafLayoutModule extends AbstractModule {
+      @Override
+      protected void configure() {
+         Multibinder.newSetBinder(binder(), IDialect).addBinding().to(LayoutDialect)
+      }
+ }
 ratpack {
   serverConfig {
     port(3000)
@@ -10,6 +21,7 @@ ratpack {
 
   bindings {
     module(ThymeleafModule)
+    module(ThymeleafLayoutModule)
   }
 
   handlers {
@@ -26,7 +38,14 @@ ratpack {
                 ]
               ], "home"))
 
-    } // get
+    }
+
+  get('about'){
+      render thymeleafTemplate([
+              title:'About page',
+              header: 'About'
+      ], 'about')
+  }
 
     // Serve assets from 'public'
     files { dir "public" }
