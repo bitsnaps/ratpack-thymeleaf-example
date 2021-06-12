@@ -1,6 +1,6 @@
 import static ratpack.groovy.Groovy.ratpack
-import ratpack.thymeleaf.ThymeleafModule
-import static ratpack.thymeleaf.Template.thymeleafTemplate
+import ratpack.thymeleaf3.ThymeleafModule
+import static ratpack.thymeleaf3.Template.thymeleafTemplate
 
 ratpack {
   serverConfig {
@@ -15,16 +15,16 @@ ratpack {
   handlers {
 
     get {
-      render(thymeleafTemplate([
+      render(thymeleafTemplate("home", [
               title:"Hello, Ratpack!",
-              header:"Hello, Ratpack!",
+              header:"Hello, Thymeleaf!",
               text:"This template got rendered using Thymeleaf",
               users: [
                 [username:'admin', email:'admin@exmaple.com', role:'ADMIN'],
                 [username:'demo', email:'demo@exmaple.com', role:'USER'],
                 [username:'test', email:'test@exmaple.com', role:'USER']
                 ]
-              ], "home"))
+              ]))
 
     } // get
 
