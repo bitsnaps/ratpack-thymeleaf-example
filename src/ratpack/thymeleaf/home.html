@@ -14,6 +14,16 @@
     <p th:text="'Today we are: ' + ${new java.util.Date()}"></p>
 
     <h1 th:text="${header}"></h1>
+
+    <form method="post" action="/upload" enctype="multipart/form-data">
+      <input type="text" name="username" placeholder="User Name" />
+      <label for="avatar">Photo
+        <input type="file" name="avatar" />
+      </label>
+
+      <input type="submit" />
+    </form>
+
     <p th:text="${text}" />
 
     <p th:if="${users.size() > 0}">There are: <span th:text="${users.size()}" /> user(s).</p>

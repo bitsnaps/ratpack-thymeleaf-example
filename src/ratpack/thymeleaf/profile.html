@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script type="text/javascript" th:src="@{/js/app.js}"></script>
+</head>
+<body>
+    <div th:replace="header" />
+
+    <img th:src="@{/images/logo.svg}" width="10%" />
+
+    <h1>Profile:</h1>
+
+    <p><b>File Name:</b> <span th:text="${fileName}"></span></p>
+
+    <img th:src="@{${'/image/'+fileName}}" width="50%" />
+
+    <p>Back to <a href="/">Home</a></p>
+
+    <div th:replace="footer" />
+
+</body>
+</html>

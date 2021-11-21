@@ -1,6 +1,16 @@
 import static ratpack.groovy.Groovy.ratpack
+import ratpack.server.BaseDir
+import ratpack.form.Form
+import ratpack.form.UploadedFile
 import ratpack.thymeleaf3.ThymeleafModule
 import static ratpack.thymeleaf3.Template.thymeleafTemplate
+import java.nio.file.Paths
+
+def uploadDir = 'uploads'
+def publicDir = 'public'
+def baseDir = BaseDir.find("${publicDir}/${uploadDir}")
+def uploadPath = baseDir.resolve(uploadDir)
+
 
 ratpack {
   serverConfig {
@@ -27,6 +37,26 @@ ratpack {
               ]))
 
     } // get
+
+    get('image/:id') {
+      File imagePath = new File("${uploadPath}/${pathTokens['id']}")
+      if (imagePath.exists()){
+        render Paths.get(imagePath.toURI())
+      } else {
+        response.status(404).send('Image not found.')
+      }
+    }
+
+    post ('upload') {
+      parse(Form).then({ def form ->
+        String username = form.get('username')
+        UploadedFile file = form.file('avatar')
+        File avatar = new File("${uploadPath}", file.fileName)
+        file.writeTo(avatar.newOutputStream())
+        println("Welcome ${username}, path: ${avatar.absolutePath}, exists: ${avatar.exists()}")
+        render(thymeleafTemplate('profile', ['fileName': avatar.name]))
+      })
+    }
 
     // Serve assets from 'public'
     files { dir "public" }
