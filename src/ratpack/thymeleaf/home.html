@@ -8,6 +8,10 @@
 <body>
     <div th:replace="header" />
 
+    <img th:src="@{/images/logo.svg}" width="10%" />
+    <h1>Ratpack</h1>
+
+    <p th:text="'Today we are: ' + ${new java.util.Date()}"></p>
 
     <h1 th:text="${header}"></h1>
     <p th:text="${text}" />
